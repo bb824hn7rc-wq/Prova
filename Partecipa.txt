@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samantha & Domenico</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: #f5f3ef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#envelope {
+  width: 260px;
+  height: 180px;
+  background: #6b7b5c;
+  position: relative;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 1s;
+}
+
+#seal {
+  width: 60px;
+  height: 60px;
+  background: gold;
+  border-radius: 50%;
+  position: absolute;
+  top: 60px;
+  left: 100px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.open {
+  transform: translateY(-300px) scale(0.8);
+}
+
+#card {
+  position: absolute;
+  width: 90%;
+  max-width: 340px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+  text-align: center;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 15px;
+  border: none;
+  background: #6b7b5c;
+  color: white;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+a {
+  color: #6b7b5c;
+  display: block;
+  margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="envelope" onclick="openInvite()">
+  <div id="seal"></div>
+</div>
+
+<div id="card">
+  <div class="page active">
+    <h2>Samantha & Domenico</h2>
+    <p>Sono lieti di invitarvi al loro matrimonio</p>
+  </div>
+
+  <div class="page">
+    <p><strong>Sabato 27 giugno 2026</strong><br>Ore 15:00</p>
+  </div>
+
+  <div class="page">
+    <p><strong>Cerimonia</strong><br>
+    Convento SS. Crocifisso dei Padri Cappuccini<br>
+    Vico del Gargano (FG)</p>
+    <a href="https://maps.google.com" target="_blank">Google Maps</a>
+    <a href="https://maps.apple.com" target="_blank">Apple Maps</a>
+  </div>
+
+  <div class="page">
+    <p><strong>Ricevimento</strong><br>Locanda del Carrubo</p>
+  </div>
+
+  <div class="page">
+    <p><strong>RSVP</strong></p>
+    <input placeholder="Nome"><br><br>
+    <input placeholder="Allergie / intolleranze"><br><br>
+    <button>Invia</button>
+  </div>
+
+  <button onclick="nextPage()">Continua</button>
+</div>
+
+<script>
+let page = 0;
+const pages = document.querySelectorAll('.page');
+
+function openInvite() {
+  document.getElementById('envelope').classList.add('open');
+  document.getElementById('card').style.display = 'block';
+}
+
+function nextPage() {
+  pages[page].classList.remove('active');
+  page = (page + 1) % pages.length;
+  pages[page].classList.add('active');
+}
+</script>
+
+</body>
+</html>
